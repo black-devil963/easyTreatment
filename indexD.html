@@ -143,6 +143,55 @@
   </table>
 </section>
     
+<section class="register vh-100 " style="position: absolute;top:30px;left:30px;right:30px;"  id="registerform">
+  <div class="mask d-flex align-items-center h-100 ">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5" >
+              <h2 class="text-uppercase text-center mb-5">Enter the new prescription for patient</h2>
+
+              <form>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="RPname">Your Name</label>
+                  <input type="text" id="RPname" class="form-control form-control-lg" required/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="RPaadhar">patient Aadhar Number</label>
+                  <input type="number" id="RPaadhar" class="form-control form-control-lg" required/>
+                  
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="sick">sickness </label>
+                  <input type="text" id="sick" class="form-control form-control-lg" required/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="description">Description </label>
+                  <input type="text" id="description" class="form-control form-control-lg" required/>
+                  
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                  <input type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onclick="document.getElementById('registerform').style.display='none';submitaction();" value="submit">
+                </div>
+
+               
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
     <script src="script.js"></script>

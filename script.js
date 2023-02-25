@@ -1,10 +1,15 @@
 document.getElementById("doctors").style.display="none";
 document.getElementById("records").style.display="none";
+document.getElementById("registerform").style.display="none";
 var counters=0,counterm=0,counterh=0,c;
-
+let i;
+function newaction(){
+    document.getElementById("registerform").style.display="inline";
+}
 const jsons = JSON.parse(localStorage.getItem('json'));
 document.getElementById("pincode").value=jsons["Items"][0]["pincode"]["N"];
 function start(){
+
     c=setInterval(function(){
         ++counters;
         if(counters==60){counters=0;++counterm}
@@ -97,10 +102,10 @@ function action3(){
 .then(json =>{
    if(json["Count"]!=0){
    text="";
-   let i;
+   
    for( i=0;i<json["Count"];i++)text+="<tr><th scope=\"row\">"+(i+1)+"</th><td>"+json["Items"][i]["sickness"]["S"]+"</td><td>Dr."+json["Items"][i]["Dr"]["S"]+"</td><td>"+json["Items"][i]["prescription"]["S"]+"</td></tr>"
    
-   text+="<tr><td colspan='4'></td><td><input style='position:absolute;right:0px;width:30px;height:30px;' type='button' value='+'></td></tr>";
+   text+="<tr><td colspan='4'></td><td><input style='position:absolute;right:0px;width:30px;height:30px;' type='button' value='+' onclick='newaction()'></td></tr>";
    //<th scope=\"row\" id=\"NewrecordId\">"+(i+1)+"</th><td><input  type='text' id='Newsickness'></td><td><input  type='text' id='priscription'></td>
    if(text.length!=0)document.getElementById("listrec").innerHTML=text;
     else document.getElementById("listrec").innerHTML="<h1>No records</h1>";
@@ -110,3 +115,36 @@ function action3(){
 })   
 else alert("enter patient id");
 }
+function submitaction(){
+    fetch("https://0eb3j5aza8.execute-api.ap-south-1.amazonaws.com/dev/cart?adhar1=\""+document.getElementById("patientids").value+"\"&adhar2=\""+jsons["Items"][0]["AdharID"]["N"]+"\"", { 
+        // Adding method type
+        method: "POST",
+         
+        // Adding body or contents to send
+        body: JSON.stringify({
+           
+            
+       "id":i.toString(),
+       "dr":document.getElementById('RPname').value.toString(),
+       "sickness":document.getElementById('sick').value.toString(),
+       "prescription":document.getElementById('description').value.toString(),
+       "ratings":i.tostring()
+       
+        }),
+       
+       
+       
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json;"
+        }
+       })
+       
+       // Converting to JSON
+       .then(response => response.json())
+       
+       // Displaying results to console
+       .then(json =>{alert('Id created!!! with userid:D'+adhar);window.location.replace("index.html");})
+         }
+        
+       
